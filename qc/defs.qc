@@ -598,6 +598,8 @@ float	AS_TURRET		= 5;
 .string targetname3;	// third name
 .string targetname4;	// fourth name
 .string killtarget2;	// second target to kill
+.string killtarget3;	// third target to kill (only if target3 is called explicitly)
+.string killtarget4;	// fourth target to kill (only if target4 is called explicitly)
 string lastnameused;	// the targetname that was last used to trigger somthing
 
 

@@ -28,6 +28,22 @@ void() SetMovedir =
 
 
 /*
+=============	
+SUB_SetAngles
+
+Set default rotation if "angles" KV is absent, but keep mapper-defined angles if present.
+=============
+*/
+void() SUB_SetAngles =
+{
+	if (!self.angles || self.angles== "")
+	{
+		self.angles = '0 0 0'
+	}
+}
+	
+
+/*
 =============
 SUB_CallAsSelf
 

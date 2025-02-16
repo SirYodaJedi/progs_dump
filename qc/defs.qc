@@ -453,6 +453,7 @@ float	known_release;	// unique id for a release; see values above -- iw
 //
 .float		light_lev;		// not used by game, but parsed by light util
 .float		style;
+.float		sequence; 		// not used by game, but used in Jack to preview animation frames
 
 
 //

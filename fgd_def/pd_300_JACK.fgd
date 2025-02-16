@@ -2322,7 +2322,7 @@ NOTE: To have a continuous stream use a func_counter as the target, then set the
 	speed(integer) : "Speed" : 1000
 	noise(sound) : "Custom Sound"
 ]
-@SolidClass  base(Appearflags, OneTargetname, TriggerWait) = trigger_hurt : "Trigger: Hurt"
+@SolidClass base(Appearflags, OneTargetname, TriggerWait) = trigger_hurt : "Trigger: Hurt"
 [
 	dmg(integer) : "Damage per second" : 5
 ]
@@ -2336,8 +2336,8 @@ NOTE: To have a continuous stream use a func_counter as the target, then set the
 	target2(target_destination) : "Is angry at" : : "Who target will get angry at."
 	spawnflags(flags) = 
 	[
-		1: "Mutual hate" : 0
-		2: "Keep player as activator" : 0
+		1 : "Mutual hate" : 0
+		2 : "Keep player as activator" : 0
 	]
 ]
 
@@ -2345,7 +2345,7 @@ NOTE: To have a continuous stream use a func_counter as the target, then set the
 [
     target(target_destination) : "The entity to change"
     message(target_destination) : "The new target value"
-	cnt(choices) : "Target field to modify." : 1 : "No value defaults to 'target'" : 1 =
+	cnt(choices) : "Target field to modify." : 1 : "No value defaults to 'target'" =
 	[
 		1 : "target"
 		2 : "target2"
@@ -2718,7 +2718,7 @@ NOTE: To have a continuous stream use a func_counter as the target, then set the
 ]
 
 //____TW_EDIT____
-@PointClass size(16 14 24) color(255 128 0) base(Targetname, Target, Appearflags) = func_counter : "Activation Counter"
+@PointClass base(Targetname, Target, Appearflags) size(16 14 24) color(255 128 0) = func_counter : "Activation Counter"
 [
 	spawnflags(flags) =
 	[
@@ -2732,7 +2732,7 @@ NOTE: To have a continuous stream use a func_counter as the target, then set the
 	]
 	count(integer) : "Number of repeats" : 10 : "Specifies how many times to repeat the event.  If LOOP is set, it specifies how high to count before resetting to zero."
 	wait(float) : "Sec. between each triggering" : "1" : "The length of time between each trigger event."
-	delay(float) : "Delay before first trigger" : : "How much time to wait before firing after being switched on.""
+	delay(float) : "Delay before first trigger" : : "How much time to wait before firing after being switched on."
 ]
 
 @PointClass size(16 14 24) color(255 175 0) base(Targetname, Target, Appearflags) = func_oncount : "Target for func_counter"
@@ -2964,7 +2964,7 @@ NOTE: To have a continuous stream use a func_counter as the target, then set the
 // end dumptruck_ds //
 // start Kex lights //
 //////////////////////
-@BaseClass size(-8 -8 -8, 8 8 8) color(255 128 0) base(Target) = KexDynamicLight : "Dynamic KEX light"
+@BaseClass size(-8 -8 -8, 8 8 8) color(255 128 0) base(Target) = KexDynamicLight
 [
 	_shadowlight(integer) : "Cast shadows" : 0 : "If set to 1, the engine will spawn a per-pixel light that cast shadows from the entity's origin when the level is loaded"
 	_shadowlightintensity(float) : "Intensity scale" : "1.0" : "Intensity scalar for the light."
@@ -3018,7 +3018,7 @@ NOTE: To have a continuous stream use a func_counter as the target, then set the
 
 @PointClass base(Appearflags, Targetname) = trigger_remove : "Any object touching this will be removed from the game. Use with caution." []
 
-@SolidClass base(Angle, Appearflags, Targetname, Target) = func_slider : "Brush that slides along an axis.\nRequires an origin brush to be part of the entity. Create an info_notnull and align it where you want the origin brush to end up."
+@SolidClass base(Angle, Appearflags, Targetname) = func_slider : "Brush that slides along an axis.\nRequires an origin brush to be part of the entity. Create an info_notnull and align it where you want the origin brush to end up."
 [
 	speed(integer) : "Speed" : 40
 	dmg(float) : "Base damage to apply"
@@ -3027,7 +3027,7 @@ NOTE: To have a continuous stream use a func_counter as the target, then set the
 		1 : "Constant (applies with pauses between)"
 		2 : "Crush (continually applies)"
 	]
-	target(target_destination) : "Movement target" : : "Reference point for movement"
+	target(target_destination) : "Movement target" : "" : "Reference point for movement"
 	sounds(choices) : "Sound set" =
 	[
 		1: "Stone door"
@@ -3049,8 +3049,7 @@ NOTE: To have a continuous stream use a func_counter as the target, then set the
 	]
 ]
 
-@PointClass size(-8 -8 -8, 8 8 8) color(115 100 240) base(Appearflags, OneTargetname) = trigger_slider :
-"Activates a slider to move a certain distance."
+@PointClass size(-8 -8 -8, 8 8 8) color(115 100 240) base(Appearflags, OneTargetname) = trigger_slider : "Activates a slider to move a certain distance."
 [
 	target(target_destination) : "Slider to target"
 	distance(float) : "Distance from target" : : "Distance from the slider's target. 0 is initial position, 1 is directly on the target."

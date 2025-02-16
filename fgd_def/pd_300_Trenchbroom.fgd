@@ -2488,7 +2488,7 @@ NOTE: To have a continuous stream use a func_counter as the target, then set the
 [
     target(target_destination) : "The entity to change"
     message(target_destination) : "The new target value"
-	cnt(choices) : "Target field to modify." : 1 : "No value defaults to 'target'" : 1 =
+	cnt(choices) : "Target field to modify." : 1 : "No value defaults to 'target'" =
 	[
 		1 : "target"
 		2 : "target2"
@@ -3176,8 +3176,7 @@ NOTE: To have a continuous stream use a func_counter as the target, then set the
 	]
 ]
 
-@PointClass size(-8 -8 -8, 8 8 8) color(115 100 240) base(Appearflags, OneTargetname) = trigger_slider :
-"Activates a slider to move a certain distance."
+@PointClass size(-8 -8 -8, 8 8 8) color(115 100 240) base(Appearflags, OneTargetname) = trigger_slider : "Activates a slider to move a certain distance."
 [
 	target(target_destination) : "Slider to target"
 	distance(float) : "Distance from target" : : "Distance from the slider's target. 0 is initial position, 1 is directly on the target."

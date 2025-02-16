@@ -952,7 +952,7 @@ Default health = 250"
     }}
 ) = monster_enforcer : "Enforcer, Default health = 80"
 [
-	keep_ammo(choices) : "Drop backpack" : : "Don't drop backpack upon death"
+	keep_ammo(choices) : "Drop backpack" : : "Don't drop backpack upon death" =
 	[
 		"" : "Yes"
 		1 : "No"
@@ -1660,7 +1660,7 @@ spawnflags & 1 ->	{"path":"progs/s_spike.mdl"},
 		0 : "Normal"
 		1 : "Large"
 	]
-	fly_sound(choices) : "Gib sound effects" : 0
+	fly_sound(choices) : "Gib sound effects" : 0 =
 	[
 		0 : "Silent"
 		1 : "Random"
@@ -2400,7 +2400,7 @@ NOTE: To have a continuous stream use a func_counter as the target, then set the
 		1 : "Player only" : 0
 		2 : "Silent" : 0 : "eliminates the teleporter ambient noise (good for hidden monster teleporters)."
 		4 : "Random" : 0 : "causes the teleporter to send the traveller to a random destination among the info_teleport_random markers in the level.  You MUST place a count field that is the number of info_teleport_random entities you placed."
-		8 : "Stealth" : 0 "eliminates the particle flash and noise when an entity is teleported."
+		8 : "Stealth" : 0 : "eliminates the particle flash and noise when an entity is teleported."
 		16 : "Monster only" : 0 : "will only teleport monsters"
 	]
 	count(integer) : "Number of info_teleport_random entities" : : "Number of info_teleport_random entities"
@@ -2488,7 +2488,7 @@ NOTE: To have a continuous stream use a func_counter as the target, then set the
 [
     target(target_destination) : "The entity to change"
     message(target_destination) : "The new target value"
-	cnt(choices) : "Target field to modify." : 1 "No value defaults to 'target'" : 1 =
+	cnt(choices) : "Target field to modify." : 1 : "No value defaults to 'target'" : 1 =
 	[
 		1 : "target"
 		2 : "target2"
@@ -2855,7 +2855,7 @@ NOTE: To have a continuous stream use a func_counter as the target, then set the
 [
 	spawnflags(flags) =
 	[
-		1 : "Toggled" : 0 "Causes the counter to switch between an on and off state each time the counter is triggered."
+		1 : "Toggled" : 0 : "Causes the counter to switch between an on and off state each time the counter is triggered."
 		2 : "Looping" : 1 : "Causes the counter to repeat infinitely.  The count resets to zero after reaching the value in count."
 		4 : "Step" : 0 : "Causes the counter to only increment when triggered.  Effectively, this turns the counter into a relay with counting abilities."
 		8 : "Reset" : 0 : "Causes the counter to reset to 0 when restarted."
@@ -3129,8 +3129,8 @@ NOTE: To have a continuous stream use a func_counter as the target, then set the
 		9 : "Slow strobe"
 		// New styles below here
 	]
-	_shadowlightstartfadedistance(float) : "Shadow start fade distance" : : "The distance in world units (from player's view position) in which fading begins" : "0"
-	_shadowlightendfadedistance(float) "Shadow end fade distance" : : "The distance in world units (from player's view position) in which the light is fully faded out and not rendered" : "0"
+	_shadowlightstartfadedistance(float) : "Shadow start fade distance" : : "The distance in world units (from player's view position) in which fading begins"
+	_shadowlightendfadedistance(float) "Shadow end fade distance" : : "The distance in world units (from player's view position) in which the light is fully faded out and not rendered"
 
 ]
 

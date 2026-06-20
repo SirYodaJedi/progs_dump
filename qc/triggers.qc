@@ -234,6 +234,12 @@ Similar to trigger_relay, but randomly uses one of its targets when used, instea
 "noise" through "noise4" are played when the respective target is chosen
 */
 
+// these spawnflags are cleared upon entity spawn, and are assigned at runtime based upon whether noise# KVs are empty.
+float SF_HAS_NOISE1 = 2;
+float SF_HAS_NOISE2 = 4;
+float SF_HAS_NOISE3 = 8;
+float SF_HAS_NOISE4 = 16;
+
 void() trigger_random_use =
 {
 	local float rand;
@@ -248,13 +254,22 @@ void() trigger_random_use =
 		rand = ( random() * self.health) + 1;
 	}
 
+	dprint("RNG result for trigger_random ");
+	dprint(self.classname);
+	dprint(": ");
+	dprint(ftos(rand));
+	dprint("\n");
+
 	if (rand >= 4)
 	{
 		SUB_UseSpecificTarget(self.target4, targetname);
 		SUB_UseSpecificTarget(self.target4, targetname2);
 		SUB_UseSpecificTarget(self.target4, targetname3);
 		SUB_UseSpecificTarget(self.target4, targetname4);
-		sound (self, CHAN_AUTO, self.noise4, 1, ATTN_NORM);
+		if (self.spawnflags & SF_HAS_NOISE4)
+		{
+			sound (self, CHAN_AUTO, self.noise4, 1, ATTN_NORM);
+		}
 	}
 	else if (rand >= 3)
 	{
@@ -262,7 +277,10 @@ void() trigger_random_use =
 		SUB_UseSpecificTarget(self.target3, targetname2);
 		SUB_UseSpecificTarget(self.target3, targetname3);
 		SUB_UseSpecificTarget(self.target3, targetname4);
-		sound (self, CHAN_AUTO, self.noise3, 1, ATTN_NORM);
+		if (self.spawnflags & SF_HAS_NOISE3)
+		{
+			sound (self, CHAN_AUTO, self.noise3, 1, ATTN_NORM);
+		}
 	}
 	else if (rand >= 2)
 	{
@@ -270,7 +288,10 @@ void() trigger_random_use =
 		SUB_UseSpecificTarget(self.target2, targetname2);
 		SUB_UseSpecificTarget(self.target2, targetname3);
 		SUB_UseSpecificTarget(self.target2, targetname4);
-		sound (self, CHAN_AUTO, self.noise2, 1, ATTN_NORM);
+		if (self.spawnflags & SF_HAS_NOISE2)
+		{
+			sound (self, CHAN_AUTO, self.noise2, 1, ATTN_NORM);
+		}
 	}
 	else
 	{
@@ -278,7 +299,10 @@ void() trigger_random_use =
 		SUB_UseSpecificTarget(self.target, targetname2);
 		SUB_UseSpecificTarget(self.target, targetname3);
 		SUB_UseSpecificTarget(self.target, targetname4);
-		sound (self, CHAN_AUTO, self.noise, 1, ATTN_NORM);
+		if (self.spawnflags & SF_HAS_NOISE1)
+		{
+			sound (self, CHAN_AUTO, self.noise, 1, ATTN_NORM);
+		}
 	}
 }
 
@@ -311,30 +335,37 @@ void() trigger_random =
 	else
 	{
 		// no target, so remove entity
+		dprint("WARNING: trigger_random");
+		dprint(self.targetname);
+		dprint(" at ");
+		dprint(vtos(self.origin));
+		dprint(" with no target; removing.\n");
 		remove(self);
 	}
-	
-	if (self.noise == "")
-	{
-		self.noise = "misc/null.wav";
-	}
-	if (self.noise2 == "")
-	{
-		self.noise2 = "misc/null.wav";
-	}
-	if (self.noise3 == "")
-	{
-		self.noise3 = "misc/null.wav";
-	}
-	if (self.noise4 == "")
-	{
-		self.noise4 = "misc/null.wav";
-	}
 
-	precache_sound (self.noise);
-	precache_sound (self.noise2);
-	precache_sound (self.noise3);
-	precache_sound (self.noise4);	
+	// clear spawnflags if set by mapper
+	self.spawnflags &= ~(SF_HAS_NOISE1|SF_HAS_NOISE2|SF_HAS_NOISE3|SF_HAS_NOISE4);
+
+	if (self.noise != "")
+	{
+		precache_sound (self.noise);
+		self.spawnflags |= SF_HAS_NOISE1;
+	}
+	if (self.noise2 != "")
+	{
+		precache_sound (self.noise2);
+		self.spawnflags |= SF_HAS_NOISE2;
+	}
+	if (self.noise3 != "")
+	{
+		precache_sound (self.noise3);
+		self.spawnflags |= SF_HAS_NOISE3;
+	}
+	if (self.noise4 != "")
+	{
+		precache_sound (self.noise4);
+		self.spawnflags |= SF_HAS_NOISE4;
+	}
 
 	self.use = trigger_random_use;
 };

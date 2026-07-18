@@ -255,7 +255,7 @@ void() trigger_random_use =
 	}
 
 	dprint("RNG result for trigger_random ");
-	dprint(self.classname);
+	dprint(self.targetname);
 	dprint(": ");
 	dprint(ftos(rand));
 	dprint("\n");
